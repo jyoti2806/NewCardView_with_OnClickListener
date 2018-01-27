@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             protected Void doInBackground(Integer... integers) {
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                       .url("http://192.168.42.215/arrayOut.php?id=" + id)
+                       .url("http://mm.s-ct.asia/arrayOut.php?id=" + id)
                         .build();
                 try {
                     Response response = client.newCall(request).execute();
@@ -65,16 +65,16 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray array = new JSONArray(response.body().string());
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject object = array.getJSONObject(i);
-                      /*  int tocNum = object.getJSONArray("toc").length();
+                        int tocNum = object.getJSONArray("toc").length();
                         String[]table_of_contents = new String[tocNum];
                         for (int j=0;j<tocNum;j++){
                             table_of_contents[j] = object.getJSONArray("toc").get(j).toString();
-                        }*/
+                        }
 
                         System.out.println(object);
 
                         MyData data = new MyData(object.getInt("id"), object.getString("description"),
-                                object.getString("image")/*,table_of_contents*/);
+                                object.getString("image"), object.getString("longDesc"), table_of_contents);
                         data_list.add(data);
                     }
                 } catch (IOException e) {

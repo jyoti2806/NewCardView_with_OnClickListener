@@ -10,13 +10,13 @@ import com.example.user.mycourse.databinding.ActivityCourseDetailBinding;
 
 public class CourseDetail extends AppCompatActivity {
     Button button;
-    TextView toc;
+    TextView tocHeading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
-        toc=findViewById(R.id.table_of_contents);
+        tocHeading=findViewById(R.id.tocHeading);
         button=findViewById(R.id.button);
         MyData myData = getIntent().getParcelableExtra("Card");
         ActivityCourseDetailBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_course_detail);

@@ -14,13 +14,14 @@ import com.bumptech.glide.Glide;
 
 public class MyData implements Parcelable{
     private int id;
-    private String description,image_link,table_of_contents;
+    private String description,image_link,longDesc,table_of_contents;
 
     protected MyData(Parcel in) {
         id = in.readInt();
         description = in.readString();
         image_link = in.readString();
-       // table_of_contents = in.readString();
+        longDesc = in.readString();
+        table_of_contents = in.readString();
     }
 
     public static final Creator<MyData> CREATOR = new Creator<MyData>() {
@@ -35,8 +36,24 @@ public class MyData implements Parcelable{
         }
     };
 
+    public String getLongDesc() {
+        return longDesc;
+    }
+
+    public String getTable_of_contents() {
+        return table_of_contents;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public void setLongDesc(String longDesc) {
+        this.longDesc = longDesc;
+    }
+
+    public void setTable_of_contents(String table_of_contents) {
+        this.table_of_contents = table_of_contents;
     }
 
     public void setId(int id) {
@@ -59,11 +76,12 @@ public class MyData implements Parcelable{
         this.image_link = image_link;
     }
 
-    public MyData(int id, String description, String image_link/*,String [] table_of_contents*/) {
+    public MyData(int id, String description, String image_link, String longDesc, String [] table_of_contents) {
         this.id = id;
         this.description = description;
         this.image_link = image_link;
-       // this.table_of_contents = TextUtils.join(", ",table_of_contents);
+        this.longDesc = longDesc;
+        this.table_of_contents = TextUtils.join("\n ",table_of_contents);
     }
 
     @Override
@@ -76,7 +94,8 @@ public class MyData implements Parcelable{
         parcel.writeInt(id);
         parcel.writeString(description);
         parcel.writeString(image_link);
-      //  parcel.writeString(table_of_contents);
+        parcel.writeString(longDesc);
+        parcel.writeString(table_of_contents);
     }
     @BindingAdapter({"android:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {

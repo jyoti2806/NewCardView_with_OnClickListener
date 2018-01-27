@@ -10,56 +10,85 @@
             type="com.example.user.mycourse.MyData" />
     </data>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/cardview_dark_background">
 
-        <ImageView
-            android:id="@+id/image"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:adjustViewBounds="true"
-            android:imageUrl="@{MyData.image_link}"
-            android:padding="8dp"
-            android:scaleType="centerCrop" />
+            android:layout_height="match_parent"
+            android:background="@color/cardview_dark_background">
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image"
-            android:background="@android:color/background_dark"
-            android:fontFamily="monospace"
-            android:gravity="center"
-           android:text="@{MyData.description}"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="25sp" />
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:imageUrl="@{MyData.image_link}"
+                android:padding="8dp"
+                android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/table_of_contents"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/description"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="16dp"
-            android:gravity="start"
-            android:text="Table of Contents will be shown here"
-            />
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image"
+                android:background="@android:color/background_dark"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:text="@{MyData.description}"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/table_of_contents"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/holo_orange_dark"
-            android:elevation="10dp"
-            android:text="@string/start_course"
-            android:textColor="@color/cardview_light_background" />
+            <TextView
+                android:id="@+id/longDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:text="@{MyData.longDesc}"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tocHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/longDesc"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/black"
+                android:text="@string/table_of_contents"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/table_of_contents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/tocHeading"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="8dp"
+                android:gravity="start"
+                android:text="@{MyData.table_of_contents}"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/table_of_contents"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/holo_orange_dark"
+                android:elevation="10dp"
+                android:text="@string/start_course"
+                android:textColor="@color/cardview_light_background" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 </layout>
