@@ -44,7 +44,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         System.out.println(my_data.get(position));
         holder.description.setText(my_data.get(position).getDescription());
-        Glide.with(context).load(my_data.get(position).getImage_link()).into(holder.imageView);
+        Glide
+                .with(context)
+                .load(my_data.get(position).getImage_link())
+              //  .placeholder(R.drawable.placeholder)
+                .into(holder.imageView);
     }
     @Override
     public int getItemCount()  {

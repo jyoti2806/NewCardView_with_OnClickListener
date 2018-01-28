@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             protected Void doInBackground(Integer... integers) {
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                       .url("http://mm.s-ct.asia/arrayOut.php?id=" + id)
+                       .url("http://192.168.42.215/arrayOut.php?id=" + id)
                         .build();
                 try {
                     Response response = client.newCall(request).execute();
