@@ -21,7 +21,7 @@
                 android:layout_height="160dp"
                 android:layout_alignParentTop="true"
                 android:padding="8dp"
-                android:layout_toEndOf="@+id/textView2"
+                android:layout_toEndOf="@+id/viewCourse"
                 android:clickable="true"
                 android:scaleType="centerCrop" />
 
@@ -50,7 +50,7 @@
                 android:clickable="true"/>
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/viewCourse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/purchaseText"
@@ -58,6 +58,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/purchaseText"
                 android:text="VIEW COURSE"
+                android:clickable="true"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="14sp" />
 

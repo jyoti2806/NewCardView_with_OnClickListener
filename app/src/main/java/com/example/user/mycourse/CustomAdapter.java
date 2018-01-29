@@ -58,12 +58,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView description;
         public ImageView imageView;
+        public TextView viewCourse;
 
         public ViewHolder(View itemView){
             super(itemView);
             description=(TextView)itemView.findViewById(R.id.description);
             imageView=(ImageView)itemView.findViewById(R.id.image);
-            itemView.setOnClickListener(this);
+            viewCourse = itemView.findViewById(R.id.viewCourse);
+            viewCourse.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
 
         @Override
