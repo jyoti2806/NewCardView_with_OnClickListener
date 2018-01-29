@@ -54,6 +54,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public int getItemCount()  {
         return my_data.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView description;
         public ImageView imageView;

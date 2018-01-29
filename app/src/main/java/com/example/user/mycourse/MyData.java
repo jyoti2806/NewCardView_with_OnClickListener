@@ -81,7 +81,7 @@ public class MyData implements Parcelable{
         this.description = description;
         this.image_link = image_link;
         this.longDesc = longDesc;
-        this.table_of_contents = TextUtils.join("\n",table_of_contents);
+        this.table_of_contents = "\u25CF "+TextUtils.join("\n\u25CF ",table_of_contents);
     }
 
     @Override

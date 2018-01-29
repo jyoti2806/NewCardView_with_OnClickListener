@@ -26,7 +26,7 @@
                 android:layout_height="200dp"
                 android:adjustViewBounds="true"
                 android:imageUrl="@{MyData.image_link}"
-                android:padding="8dp"
+
                 android:scaleType="centerCrop" />
 
             <TextView
@@ -44,7 +44,8 @@
                 android:paddingTop="8dp"
                 android:text="@{MyData.description}"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/courseDescHeading"
@@ -56,16 +57,17 @@
                 android:fontFamily="monospace"
                 android:text="@string/course_description"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/longDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/courseDescHeading"
-                android:layout_marginTop="16dp"
-
                 android:layout_marginStart="20dp"
+
+                android:layout_marginTop="16dp"
                 android:text="@{MyData.longDesc}"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
@@ -80,7 +82,8 @@
                 android:background="@android:color/white"
                 android:text="@string/table_of_contents"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/table_of_contents"
@@ -94,6 +97,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="monospace"
                 android:text="@{MyData.table_of_contents}"
+
                 android:textColor="@android:color/black"
                 android:textSize="24sp" />
 
@@ -102,10 +106,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/table_of_contents"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="36dp"
                 android:layout_marginRight="36dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:background="@drawable/button_states"
                 android:elevation="10dp"
                 android:text="@string/start_course"
