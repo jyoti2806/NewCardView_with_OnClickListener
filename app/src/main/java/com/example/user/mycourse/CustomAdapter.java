@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -78,5 +79,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             view.getContext().startActivity(intent);
 
         }
+    }
+    public void setFilter(ArrayList<MyData> newList){
+        my_data = new ArrayList<>();
+        my_data.addAll(newList);
+        notifyDataSetChanged();
     }
 }
