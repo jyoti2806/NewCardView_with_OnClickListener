@@ -10,6 +10,9 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,17 +26,19 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
     private CustomAdapter adapter;
     private List<MyData> data_list;
+    ProgressBar mLoadingProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {//10:22
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mLoadingProgress = findViewById(R.id.pb_loading);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         data_list = new ArrayList<>();
         load_data_from_server(0);
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.card_list_menu,menu);
+        inflater.inflate(R.menu.card_list_menu, menu);
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) item.getActionView();
         searchView.setOnQueryTextListener(this);
@@ -71,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             protected Void doInBackground(Integer... integers) {
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                       .url("http://mm.s-ct.asia/arrayOut.php?id=" + id)
+                        .url("http://mm.s-ct.asia/arrayOut.php?id=" + id)
                         .build();
                 try {
                     Response response = client.newCall(request).execute();
@@ -80,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject object = array.getJSONObject(i);
                         int tocNum = object.getJSONArray("toc").length();
-                        String[]table_of_contents = new String[tocNum];
-                        for (int j=0;j<tocNum;j++){
+                        String[] table_of_contents = new String[tocNum];
+                        for (int j = 0; j < tocNum; j++) {
                             table_of_contents[j] = object.getJSONArray("toc").get(j).toString();
                         }
 
@@ -100,8 +105,24 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             }
 
             @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mLoadingProgress.setVisibility(View.VISIBLE);
+            }
+
+            @Override
             protected void onPostExecute(Void aVoid) {
+                TextView error_msg = findViewById(R.id.error_msg);
+                mLoadingProgress.setVisibility(View.INVISIBLE);
+                if (data_list == null) {
+                    error_msg.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.INVISIBLE);
+                }
+                else {
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
                 adapter.addData(data_list);
+
                 recyclerView.setAdapter(adapter);
             }
         };
@@ -117,9 +138,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public boolean onQueryTextChange(String newText) {
         newText = newText.toLowerCase();
         ArrayList<MyData> newList = new ArrayList<>();
-        for (MyData myData : data_list){
+        for (MyData myData : data_list) {
             String description = myData.getDescription().toLowerCase();
-            if (description.contains(newText)){
+            if (description.contains(newText)) {
                 newList.add(myData);
             }
         }
