@@ -103,6 +103,7 @@ public class MyData implements Parcelable{
         Glide.with(view.getContext())
                 .load(imageUrl)
                 .placeholder(R.drawable.placeholder)
+                .fitCenter()
                 .into(view);
     }
 }

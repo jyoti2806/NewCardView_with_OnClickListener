@@ -25,9 +25,10 @@ import java.util.List;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private Context context;
     private List<MyData> my_data;
+
     public CustomAdapter(Context context, List<MyData> my_data) {
-        this.context=context;
-        this.my_data=my_data;
+        this.context = context;
+        this.my_data = my_data;
     }
 
     public void addData(List<MyData> myData) {
@@ -36,8 +37,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     }
 
     @Override
-    public  ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.card,parent,false);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -48,23 +49,25 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         Glide
                 .with(context)
                 .load(my_data.get(position).getImage_link())
-              //  .placeholder(R.drawable.placeholder)
+                .placeholder(R.drawable.placeholder)
+                .fitCenter()
                 .into(holder.imageView);
     }
+
     @Override
-    public int getItemCount()  {
+    public int getItemCount() {
         return my_data.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView description;
         public ImageView imageView;
         public TextView viewCourse;
 
-        public ViewHolder(View itemView){
+        public ViewHolder(View itemView) {
             super(itemView);
-            description=(TextView)itemView.findViewById(R.id.description);
-            imageView=(ImageView)itemView.findViewById(R.id.image);
+            description = (TextView) itemView.findViewById(R.id.description);
+            imageView = (ImageView) itemView.findViewById(R.id.image);
             viewCourse = itemView.findViewById(R.id.viewCourse);
             viewCourse.setOnClickListener(this);
             //itemView.setOnClickListener(this);
@@ -74,13 +77,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public void onClick(View view) {
             int position = getAdapterPosition();
             MyData selectedCard = my_data.get(position);
-            Intent intent = new Intent(view.getContext(),CourseDetail.class);
-            intent.putExtra("Card",selectedCard);
+            Intent intent = new Intent(view.getContext(), CourseDetail.class);
+            intent.putExtra("Card", selectedCard);
             view.getContext().startActivity(intent);
 
         }
     }
-    public void setFilter(ArrayList<MyData> newList){
+
+    public void setFilter(ArrayList<MyData> newList) {
         my_data = new ArrayList<>();
         my_data.addAll(newList);
         notifyDataSetChanged();
